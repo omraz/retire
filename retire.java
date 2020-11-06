@@ -1,7 +1,7 @@
 /*
  *  Version Date    Note
  *  0.0.1   06Nov20 Initial version
- *
+ *  0.0.2   06Nov20 Amended early date
  */
 
 import java.util.Calendar;
@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 public class retire {
 
 	static void Help()	{
-		System.out.println("Usage: retire { premature } { [ --num | -n ] } { [ --help | -h | /h | /? ] }");
+		System.out.println("Usage: retire { premature | early } { [ --num | -n ] } { [ --help | -h | /h | /? ] }");
 		System.out.println("  premature\tset retire date to premature instead of regular; shorts allowed");
 		System.out.println("  --num \tdisplay months as numbers");
 		System.out.println("  --help\tthis help");
@@ -19,20 +19,23 @@ public class retire {
 	public static void main(String[] argv) {
 
 		boolean premature = false;
+        boolean early = false;
 		boolean numbers = false;
 		boolean help = false;
 
-		System.out.println("retire version 0.0.1 (19.12.2019)\t(c) OM");
+		System.out.println("retire version 0.0.2 06Nov20\t\u00a9 OM");
 
 		for(String arg : argv)	{
 			if ( new String("premature").startsWith(arg.toLowerCase()) )
 				premature = true;
-			if ( new String("-h").equals(arg.toLowerCase()) ||
+			else if ( new String("early").startsWith(arg.toLowerCase()) )
+				early = true;
+			else if ( new String("-h").equals(arg.toLowerCase()) ||
 			     new String("--help").equals(arg.toLowerCase()) ||
 			     new String("/h").equals(arg.toLowerCase()) ||
 			     new String("/?").equals(arg.toLowerCase()) )
 				help = true;
-			if ( new String("-n").equals(arg.toLowerCase()) ||
+			else if ( new String("-n").equals(arg.toLowerCase()) ||
 			     new String("--num").equals(arg.toLowerCase()) )
 				numbers = true;
 		}
@@ -48,6 +51,10 @@ public class retire {
 		if ( premature )	{
 			retire.set(2021, 6, 31);	//	month is zero based: 0 - January
 			System.out.print("premature ");
+		}
+		else if ( early )	{
+			retire.set(2023, 6, 31);	//	month is zero based: 0 - January
+			System.out.print("early ");
 		}
 		else	{
 			retire.set(2025, 10, 30);

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+jar -cvmf MANIFEST.MF ~/lib/retire.jar *.class
+

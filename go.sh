@@ -5,7 +5,7 @@ if [ $? == 0 ]
 then
   echo Compilation SUCCEED.
   echo
-  java retire $1 $2 $3
+  java retire $*
 else
   echo Compilation FAILED!
 fi

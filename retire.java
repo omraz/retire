@@ -2,6 +2,7 @@
  *  Version Date    Note
  *  0.0.1   06Nov20 Initial version
  *  0.0.2   06Nov20 Amended early date
+ *  0.0.3   08Nov20 Finish when wrong parameter passed
  */
 
 import java.util.Calendar;
@@ -23,7 +24,7 @@ public class retire {
 		boolean numbers = false;
 		boolean help = false;
 
-		System.out.println("retire version 0.0.2 06Nov20\t\u00a9 OM");
+		System.out.print("retire version 0.0.3 08Nov20\t\u00a9 OM\n\n");
 
 		for(String arg : argv)	{
 			if ( new String("premature").startsWith(arg.toLowerCase()) )
@@ -38,6 +39,11 @@ public class retire {
 			else if ( new String("-n").equals(arg.toLowerCase()) ||
 			     new String("--num").equals(arg.toLowerCase()) )
 				numbers = true;
+            else    {
+                System.out.println("Unknown parameter '" + arg + "'!");
+                Help();
+                return;
+            }
 		}
 
 		if ( help )	{
